@@ -2,9 +2,10 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from "cookie-parser";
-import {loggerMiddleware} from "./middlewares/logger-middleware";
-import {errorMiddleware} from "./middlewares/error-middleware";
-import {dbService} from "./services/db-service";
+import {loggerMiddleware} from "./middlewares/logger-middleware.js";
+import {errorMiddleware} from "./middlewares/error-middleware.js";
+import {dbService} from "./services/db-service.js";
+import {router} from "./routers/router.js";
 
 dotenv.config();
 
@@ -15,12 +16,21 @@ const corsOptions = {
 }
 
 //Подключение миддлварей
+
 server.use(cors(corsOptions));
-server.use(express.json());
+server.use(express.json({
+    limit: '200mb'
+}));
 server.use(cookieParser(process.env.COOKIE_SECRET));
-server.use(loggerMiddleware)
-server.use(errorMiddleware);
+server.use((req, res, next) => {
+    setTimeout(() => {
+        next();
+    }, 2000);
+});
+
 server.use('/api', router);
+// server.use(loggerMiddleware)
+server.use(errorMiddleware);
 
 try {
     await dbService();

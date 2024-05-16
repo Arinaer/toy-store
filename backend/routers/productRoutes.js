@@ -4,7 +4,6 @@ import {adminMiddleware} from "../middlewares/admin-middleware.js";
 import {
     deleteProduct,
     getProduct,
-    getProductFilters,
     getProducts,
     patchProduct,
     postProduct
@@ -13,7 +12,6 @@ import {
 const productRouter = Router();
 
 productRouter.get('', getProducts);
-productRouter.get('-filters', getProductFilters);
 productRouter.get('/:id', getProduct);
 productRouter.post('', authMiddleware, adminMiddleware, postProduct);
 productRouter.delete('/:id', authMiddleware, adminMiddleware, deleteProduct);

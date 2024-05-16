@@ -15,7 +15,7 @@ export async function postCart (req, res, next) {
             const cart = await createCart(userData._id, products);
             return res.status(200).json(cart);
         }
-        const cart = await editCart(userData._id, req.body);
+        const cart = await editCart(userData._id, products);
         return res.status(200).json(cart);
     } catch (e) {
         next(e);
