@@ -11,7 +11,9 @@ dotenv.config();
 
 const server = express();
 const corsOptions = {
-    origin: process.env.ORIGIN,
+    origin: [process.env.ORIGIN, 'https://toy-store-117g.vercel.app', 'https://toy-store-117g.vercel.app/'],
+    methods: 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT',
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }
 

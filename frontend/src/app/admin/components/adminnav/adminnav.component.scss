@@ -1,0 +1,37 @@
+
+
+.sidebar {
+  width: 100%;
+  padding: 10px;
+  min-height: 150px;
+  border-radius: 20px;
+  background-color: #ebf4fd;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  font-size: 20px;
+  font-weight: 400;
+  color: #0c0d1c;
+  cursor: pointer;
+  padding: 10px;
+  transition: .35s transform;
+  border-radius: 8px;
+
+  &:hover {
+    color: white;
+    background-color: #5f5ff6;
+    transform: scale(1.1);
+  }
+
+  &.active {
+    color: white;
+    background-color: #5f5ff6;
+    transform: scale(1.1);
+  }
+}

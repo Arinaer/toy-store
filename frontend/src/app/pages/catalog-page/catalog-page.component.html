@@ -1,0 +1,103 @@
+<section class="catalog">
+  <div class="container">
+    <form class="catalog-filters" [formGroup]="testForm" >
+      <span class="catalog-filters-clear" *ngIf="showClearButton()">
+          <tui-svg
+            src="tuiIconDelete"
+            (click)="clearForm()"
+            [style.color]="'var(--tui-primary)'"
+          ></tui-svg>
+      </span>
+      <span class="catalog-filters-subtitle">Название</span>
+      <tui-input
+        [formControl]="testForm.controls.name"
+
+      >
+        Название
+      </tui-input>
+      <span class="catalog-filters-subtitle">Цена</span>
+      <tui-input-range
+        [formControl]="testForm.controls.minMaxPrice"
+        [max]="max"
+        [min]="min"
+        [quantum]="quantum"
+        [steps]="steps"
+        [tuiTextfieldLabelOutside]="true"
+        [tuiTextfieldSize]="'m'"
+      ></tui-input-range>
+      <span class="catalog-filters-subtitle">Категория</span>
+      <tui-input
+        *tuiLet="categories$ | async as categories"
+      >
+        <input
+          placeholder="Введите название категории"
+          tuiTextfield
+        />
+        Категория
+        <ng-container *ngIf="categories?.length">
+          <tui-data-list *tuiDataList>
+            <button
+              *ngFor="let category of categories"
+              tuiOption
+              [value]="category.name"
+              (click)="onSelected(category)"
+            >
+              {{ category.name }}
+            </button>
+          </tui-data-list>
+        </ng-container>
+      </tui-input>
+      <button
+        size="l"
+        tuiButton
+        type="submit"
+        (click)="submitFilters()"
+        class="tui-form__button"
+      >
+        Применить
+      </button>
+    </form>
+    <div class="catalog-content">
+      <div class="catalog-header"></div>
+      <span class="catalog-empty" *ngIf="((products$ | async)?.length === 0) && !isLoading">Таких товаров нет</span>
+      <span class="catalog-loader" *ngIf="isLoading">
+        <tui-loader
+          class="loader"
+          [size]="'xl'"
+          [inheritColor]="true"
+          [overlay]="true"
+          [showLoader]="true"
+        >
+        </tui-loader>
+      </span>
+      <div class="catalog-items" *ngIf="!isLoading">
+        <div class="catalog-item" *ngFor="let product of products$ | async">
+          <span class="catalog-item-fav">
+            <tui-svg
+              src="tuiIconHeart"
+              (click)="addToFavorites(product)"
+              [style.color]="alreadyFavorite(product) ? 'red' :'var(--tui-primary)'"
+            ></tui-svg>
+          </span>
+<!--          <img [src]="product.photos[0]" alt="" class="catalog-item-img" [routerLink]="product._id">-->
+          <img [src]="product.photos[0]" alt="" class="catalog-item-img">
+          <div class="catalog-item-text">
+            <span class="catalog-item-price">{{product.price}} ₽</span>
+            <span class="catalog-item-name">{{product.name}}</span>
+            <button
+              size="l"
+              tuiButton
+              appearance="custom"
+              type="submit"
+              (click)="addToCart(product)"
+              [ngClass]="{'active': inCart(product), 'tui-form__button': true}"
+            >
+              <span *ngIf="!inCart(product)">В корзину</span>
+              <span *ngIf="inCart(product)">В корзине</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+}
+
+.add {
+  width: 150px;
+  border: none;
+  padding: 10px;
+  color: white;
+  background-color: #5f5ff6;
+  transition: .35s transform;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  &:hover {
+    transform: scale(1.1);
+    background-color: #3C3CA9;
+  }
+
+  margin-bottom: 10px;
+}
+
+#delete {
+  transition: transform .35s;
+  &:hover {
+    transform: scale(1.25);
+    filter: brightness(0) saturate(100%) invert(50%) sepia(84%) saturate(4596%) hue-rotate(338deg) brightness(108%) contrast(84%);
+  }
+}
+
+.cat-photo {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}

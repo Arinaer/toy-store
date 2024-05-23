@@ -1,0 +1,257 @@
+@import '../../../assets/styles/variables';
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+.start {
+  //background-color: #5555DF;
+  padding: 85px 0 30px 0;
+  .carousel {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 991px) {
+    padding: 50px 0 0 0;
+  }
+}
+
+.subscription {
+  background: linear-gradient(90deg, #3C3CA9 16.77%, #5F5FF6 79.3%);
+  margin-top: 30px;
+
+  &-img {
+    margin-left: -210px;
+    margin-top: -30px;
+  }
+
+  &-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &-btn {
+    border: 2px solid #dee0ee;
+    padding: 12px 20px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    color: $white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 30px;
+    background: linear-gradient(to bottom, #5555df 0%,#5555df 100%);
+
+    &:hover {
+      color: $blue-hovered;
+      background: $white;
+    }
+  }
+
+  &-input {
+    height: 44px;
+    line-height: 44px;
+    border: 2px solid #dee0ee;
+    font-size: 13px;
+    border-radius: 24px;
+    padding: 0 30px;
+  }
+
+  &-text {
+    font-weight: 600;
+    font-size: 24px;
+    color: $white;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow: visible;
+  }
+
+  .subcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 235px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .subcontainer {
+      gap: 15px;
+      justify-content: space-between;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .subcontainer {
+      gap: 25px;
+      align-items: self-start;
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 575px) {
+      .container {
+        flex-direction: column-reverse;
+        gap: 15px;
+        padding-top: 10px;
+      }
+  }
+}
+
+.advantages {
+  margin-top: 40px;
+  padding: 50px 0;
+  background: $bejevii;
+
+  .title {
+    font-size: 28px;
+    span {
+      color: #5f5ff6;
+    }
+  }
+
+  &-list {
+    margin-top: 25px;
+    display: flex;
+    column-gap: 35px;
+    justify-content: space-around;
+  }
+
+  &-item {
+    width: calc(25% - 27px);
+    padding: 110px 25px 25px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fed73e;
+    border-radius: 30px;
+    color: #0C0D1C;
+    box-sizing: border-box;
+  }
+
+  &-name {
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 18px;
+    z-index: 9;
+    position: relative;
+  }
+
+  &-text {
+    font-size: 13px;
+    z-index: 9;
+    padding: 0;
+    position: relative;
+  }
+
+  &-image {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -35px;
+    width: 152px;
+    height: 152px;
+    background: #F5BC25 url('../../../assets/icons/advantages.png') 0 0 no-repeat;
+    border-radius: 100%;
+
+
+    &[data-ident="1"] {
+      background-position: 36px 10px;
+    }
+
+    &[data-ident="2"] {
+      background-position: 36px -142px;
+    }
+
+    &[data-ident="3"] {
+      background: #F5BC25 url('../../../assets/icons/advantages-icon-5.png') 50% 60% no-repeat;
+    }
+
+    &[data-ident="4"] {
+      background-position: 36px -294px;
+    }
+  }
+  @media (max-width: 991px) {
+    padding: 30px 0;
+    &-list {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    &-item {
+      width: 45%;
+      margin-top: 10px;
+      padding: 110px 25px 25px;
+      position: relative;
+      overflow: hidden;
+      background-color: #fed73e;
+      border-radius: 30px;
+      color: #0C0D1C;
+      box-sizing: border-box;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    &-item {
+      width: 100%;
+    }
+  }
+
+
+}
+
+.brands {
+  padding: 50px 0;
+  background-color: $gray;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px 10px;
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (max-width: 575px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+
+
+  &-item {
+    background-color: $white;
+    border-radius: 12px;
+    //height: 180px;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-img {
+    //height: 120px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+
+}
+

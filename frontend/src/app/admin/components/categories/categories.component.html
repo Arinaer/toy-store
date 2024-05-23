@@ -1,0 +1,132 @@
+<div class="container">
+  <button class="add" (click)="open()">Добавить</button>
+  <table class="tui-table">
+    <tbody>
+    <tr class="tui-table__tr tui-table__tr_border_none">
+      <th class="tui-table__th">Id</th>
+      <th class="tui-table__th">Название</th>
+      <th class="tui-table__th">Описание</th>
+      <th class="tui-table__th tui-table__th_last">Фото</th>
+      <th class="tui-table__th tui-table__th_last">Кнопки</th>
+    </tr>
+    <tr class="tui-table__tr tui-table__tr_border_none" *ngFor="let category of categories | async">
+      <td class="tui-table__td">{{category._id}}</td>
+      <td class="tui-table__td">
+        <tui-input
+          tuiTextfieldSize="s"
+          [ngModel]="category.name"
+          [ngModelOptions]="options"
+          (ngModelChange)="onValueChange($event, 'name', category, categories)"
+        ></tui-input>
+      </td>
+      <td class="tui-table__td">
+        <tui-input
+          tuiTextfieldSize="s"
+          [ngModel]="category.description"
+          [ngModelOptions]="options"
+          (ngModelChange)="onValueChange($event, 'description', category, categories)"
+        ></tui-input>
+      </td>
+      <td class="tui-table__td tui-table__td_last">
+        <img src="{{category.photo}}" alt="" class="cat-photo" >
+<!--        <tui-input-files-->
+<!--          *ngIf="!category.photo"-->
+<!--          accept="image/*"-->
+<!--          [ngModel]="category.photo"-->
+<!--          [ngModelOptions]="options"-->
+<!--          (ngModelChange)="onValueChange($event, 'photo', category, categories)"-->
+<!--        ></tui-input-files>-->
+<!--        <tui-file-->
+<!--          *ngIf="category.photo as file"-->
+<!--          [file]="file"-->
+<!--          [showDelete]="control.enabled"-->
+<!--          (removed)="removeFile()"-->
+<!--        ></tui-file>-->
+<!--        {{category.photo}}-->
+      </td>
+      <td class="tui-table__td tui-table__td_last buttons">
+        <tui-svg src="tuiIconTrash" id="delete" (click)="deleteCategory(category._id)"/>
+<!--        <tui-svg src="tuiIconEdit"/>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <app-modal [isOpen]="isOpen">
+    <div class="tui-container" style="margin: 0 auto; max-width: 450px;">
+      <form [formGroup]="categoryForm">
+        <div class="tui-row tui-row_sme">
+          <div class="tui-col_8">
+            <h3 class="tui-form__header tui-form__header_margin-top_none">Категория</h3>
+            <div class="tui-form__row">
+              <tui-input formControlName="nameValue">
+                Название
+                <input
+                  placeholder="Настольные игры"
+                  tuiTextfield
+                />
+                <span class="tui-required"></span>
+              </tui-input>
+              <tui-error
+                formControlName="nameValue"
+                [error]="[] | tuiFieldError | async"
+              ></tui-error>
+            </div>
+            <div class="tui-form__row">
+              <tui-input formControlName="descriptionValue">Описание</tui-input>
+              <tui-error
+                formControlName="descriptionValue"
+                [error]="[] | tuiFieldError | async"
+              ></tui-error>
+            </div>
+            <div class="tui-form__row">
+              <tui-input-files
+                *ngIf="!control.value"
+                accept="image/*"
+                [formControl]="categoryForm.controls.photoValue"
+                (reject)="onReject($event)"
+              ></tui-input-files>
+
+              <tui-files class="tui-space_top-1">
+                <tui-file
+                  *ngIf="categoryForm.controls.photoValue.value as file"
+                  [file]="file"
+                  [showDelete]="control.enabled"
+                  (removed)="removeFile()"
+                ></tui-file>
+
+                <tui-file
+                  *ngIf="rejectedFiles$ | async as file"
+                  state="error"
+                  [file]="file"
+                  [showDelete]="control.enabled"
+                  (removed)="clearRejected()"
+                ></tui-file>
+
+                <tui-file
+                  *ngIf="loadingFiles$ | async as file"
+                  state="loading"
+                  [file]="file"
+                  [showDelete]="control.enabled"
+                ></tui-file>
+              </tui-files>
+
+            </div>
+            <div class="tui-form__row login-flex" style="margin-top: 20px;">
+              <button
+                size="l"
+                tuiButton
+
+                type="submit"
+                (click)="submit()"
+                class="tui-form__button"
+              >
+                Сохранить
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <ngb-alert style="margin-top: 10px;" *ngIf="errorMessage" #selfClosingAlert type="danger" (closed)="errorMessage = ''">{{ errorMessage }}</ngb-alert>
+    </div>
+  </app-modal>
+</div>

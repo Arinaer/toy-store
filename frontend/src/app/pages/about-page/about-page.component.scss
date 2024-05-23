@@ -1,0 +1,56 @@
+@import '../../../assets/styles/variables';
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.cart {
+  padding: 85px 0 30px 0;
+  min-height: 90vh;
+  background: $gray-back;
+}
+
+.title {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+  color: #0c0d1c;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: bold;
+  margin: 0 0 2px;
+  text-decoration: none;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.text {
+  color: #6b6b6b;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 1250px) {
+  .subtitle {
+    font-size: 21px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+}

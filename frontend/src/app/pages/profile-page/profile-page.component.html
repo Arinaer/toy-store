@@ -1,0 +1,92 @@
+<section class="cart">
+  <div class="container">
+    <div class="sidebar">
+      <div class="items">
+        <div [ngClass]="{'item': true, 'active': route==='profile'}" (click)="changeRoute('profile')">Профиль</div>
+        <div [ngClass]="{'item': true, 'active': route==='orders'}" (click)="changeRoute('orders')">Заказы</div>
+        <div [ngClass]="{'item': true, 'active': route==='favorites'}" (click)="changeRoute('favorites')">Избранное</div>
+      </div>
+    </div>
+    <div class="content" *ngIf="route==='profile'">
+      <span class="hi">Привет, {{getName()}}!</span>
+      <button
+        size="l"
+        tuiButton
+        type="button"
+        (click)="logout()"
+        [ngClass]="{'tui-form__button': true}"
+      >
+        Выйти
+      </button>
+      <span class="goto" (click)="changeRoute('orders')" >
+        <span >Перейти к заказам</span>
+        <tui-svg src="tuiIconArrowRight"></tui-svg>
+      </span>
+    </div>
+    <div class="orders" *ngIf="route==='orders'">
+      <span class="catalog-empty" *ngIf="!isLoading && (orders$ | async)?.length === 0">Вы ничего не добавили</span>
+      <span class="catalog-loader" *ngIf="isLoading">
+        <tui-loader
+          class="loader"
+          [size]="'xl'"
+          [inheritColor]="true"
+          [overlay]="true"
+          [showLoader]="true"
+        >
+        </tui-loader>
+      </span>
+      <div class="order" *ngFor="let order of orders$ | async">
+        <div class="order-header">
+          <span>{{formatDate(order.date)}}</span>
+          <span>{{order.price}} ₽</span>
+        </div>
+        <div class="order-products">
+          <div *ngFor="let product of order.products">
+            <img [src]="product.photos[0]" alt="" class="order-products-img">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="favorites catalog" *ngIf="route==='favorites'">
+        <div class="catalog-header"></div>
+        <span class="catalog-empty" *ngIf="!isLoading && favorites.length === 0">Вы ничего не добавили</span>
+        <span class="catalog-loader" *ngIf="isLoading">
+        <tui-loader
+          class="loader"
+          [size]="'xl'"
+          [inheritColor]="true"
+          [overlay]="true"
+          [showLoader]="true"
+        >
+        </tui-loader>
+      </span>
+        <div class="catalog-items" *ngIf="!isLoading">
+          <div class="catalog-item" *ngFor="let product of favorites">
+          <span class="catalog-item-fav">
+            <tui-svg
+              src="tuiIconHeart"
+              (click)="addToFavorites(product)"
+              [style.color]="alreadyFavorite(product) ? 'red' :'var(--tui-primary)'"
+            ></tui-svg>
+          </span>
+            <img [src]="product.photos[0]" alt="" class="catalog-item-img" [routerLink]="product._id">
+            <div class="catalog-item-text">
+              <span class="catalog-item-price">{{product.price}} ₽</span>
+              <span class="catalog-item-name">{{product.name}}</span>
+              <button
+                size="l"
+                tuiButton
+                appearance="custom"
+                type="submit"
+                (click)="addToCart(product)"
+                [ngClass]="{'active': inCart(product), 'tui-form__button': true}"
+              >
+                <span *ngIf="!inCart(product)">В корзину</span>
+                <span *ngIf="inCart(product)">В корзине</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+@import "bootstrap/scss/bootstrap";
+@import 'assets/styles/reset';
+@import 'assets/styles/variables';
+@import 'assets/styles/fonts';
+@import "bootstrap/scss/bootstrap";
+
+*, body, html {
+  font-family: $secondary-font;
+}

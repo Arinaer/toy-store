@@ -1,0 +1,73 @@
+<section class="cart">
+  <div class="container">
+      <span class="cart-loader" *ngIf="isLoading">
+        <tui-loader
+          class="loader"
+          size="xl"
+          [overlay]="true"
+          [showLoader]="true"
+        >
+        </tui-loader>
+<!--        Загрузка-->
+      </span>
+    <div class="cart-left">
+      <h2 class="title">Корзина</h2>
+      <span *ngIf="!isLoading && cart.products.length === 0" class="cart-empty">Вы еще не добавили товары в корзину</span>
+      <div class="cart-items" *ngIf="!isLoading">
+        <div class="cart-item" *ngFor="let item of cart.products">
+          <img [src]="item.photos[0]" alt="" class="cart-item-img">
+          <div class="cart-item-flex">
+            <span class="cart-item-placeholder">Распродажа</span>
+            <span class="cart-item-name">{{item.name}}</span>
+            <span class="cart-item-weight">Вес: 2.2 кг</span>
+          </div>
+          <div class="cart-item-div">
+            <span class="cart-item-empty"> </span>
+            <span class="cart-item-price">{{ item.price }} </span>
+            <div class="cart-item-counter">
+              <tui-svg class="cart-item-btn" [src]='tuiIconMinus'></tui-svg>
+              <div class="cart-item-count">1</div>
+              <tui-svg class="cart-item-btn" [src]='tuiIconPlus'></tui-svg>
+            </div>
+          </div>
+          <div class="cart-item-buttons">
+            <tui-svg [src]='tuiIconTrash' (click)="deleteFromCart(item)"></tui-svg>
+            <tui-svg [src]='tuiIconHeart' [style.color]="alreadyFavorite(item) ? 'red' :'var(--tui-primary)'" (click)="addToFavorites(item)"></tui-svg>
+          </div>
+        </div>
+        <div class="cart-item-mobile" *ngFor="let item of cart.products">
+          <img [src]="item.photos[0]" alt="" class="cart-item-img">
+          <div class="cart-item-flex">
+            <span class="cart-item-name">{{item.name}}</span>
+            <span class="cart-item-price">{{ item.price }}</span>
+          </div>
+          <div class="cart-item-buttons">
+            <tui-svg [src]='tuiIconTrash' (click)="deleteFromCart(item)"></tui-svg>
+            <tui-svg [src]='tuiIconHeart' [style.color]="alreadyFavorite(item) ? 'red' :'var(--tui-primary)'" (click)="addToFavorites(item)"></tui-svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-right" *ngIf="!isLoading && cart.products.length > 0">
+      <div class="cart-right-text">
+        <div class="cart-right-flex">
+          <span>{{ cart.products.length }} ед. товара</span>
+          <span>{{ sumOfCart() + 1480 }} ₽</span>
+        </div>
+        <div class="cart-right-flex">
+          <span>Вес: 2.2 кг</span>
+          <span></span>
+        </div>
+        <div class="cart-right-flex">
+          <span>Акции </span>
+          <span>−1480 ₽</span>
+        </div>
+        <div class="cart-right-flex">
+          <span>Итого </span>
+          <span>{{ sumOfCart() }} ₽</span>
+        </div>
+      </div>
+      <button class="cart-right-btn" (click)="createOrder()">Оформить</button>
+    </div>
+  </div>
+</section>

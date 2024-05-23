@@ -1,0 +1,149 @@
+@import '../../../assets/styles/variables';
+
+.header {
+  position: fixed;
+  //height: 130px;
+  padding-top: 10px;
+  width: 100%;
+  top: 0;
+  background-color: $blue;
+  z-index: 10;
+
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    //overflow: hidden;
+    display: flex;
+    gap: 90px;
+    align-items: end;
+
+    @media (max-width: 1040px) {
+      gap: 40px;
+      justify-content: space-between;
+    }
+  }
+
+  .burger {
+    display: none;
+    transform: scale(3) translateX(-2px) translateY(-9px);
+    filter: brightness(0) saturate(100%) invert(100%) sepia(99%) saturate(0%) hue-rotate(245deg) brightness(113%) contrast(100%);
+    @media (max-width: 991px) {
+      display: block;
+    }
+  }
+
+  &-links {
+    display: flex;
+    gap: 10px;
+    color: $white;
+    @media (max-width: 991px) {
+      display: none;
+    }
+  }
+
+  &-link {
+    font-size: 22px;
+    transition: .3s all;
+    padding: 12px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+
+    &.active {
+      background-color: $white;
+      color: $black;
+    }
+
+    .button {
+      background-color: transparent;
+      border: none;
+
+    }
+  }
+
+  &-logo {
+    width: 65px;
+  }
+
+  .logo {
+    &-container {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    &-text {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      //gap: 8px;
+      color: $white;
+    }
+
+    &-title {
+      font-size: 40px;
+      line-height: 36px;
+      font-family: $main-font;
+    }
+
+    &-subtitle {
+      font-family: 'Euclid Circular A', sans-serif;
+      font-size:17px;
+    }
+  }
+}
+
+.drop2 {
+  transform: translateX(-20px);
+}
+
+.header-links-mobile {
+  display: none;
+  font-size: 20px;
+  font-weight: 500;
+  height: 100%;
+  padding-top: 60px;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 991px) {
+    background-color: #fff;
+    display: flex;
+    overflow-x: hidden;
+    transition: 0.5s;
+    &.active {
+      width: 200px;
+    }
+  }
+  .burger-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    transform: scale(2) translateX(-2px) translateY(-9px);
+  }
+
+
+}
+
+.header-link-mobile {
+  &-admin {
+    @media screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+}
+
+

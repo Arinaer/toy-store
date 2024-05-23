@@ -1,0 +1,53 @@
+<div class="login">
+  <div class="container">
+    <div class="tui-container" style="margin: 0 auto; max-width: 450px;">
+      <form [formGroup]="loginForm">
+        <div class="tui-row tui-row_sme">
+          <div class="tui-col_12">
+            <h3 class="tui-form__header tui-form__header_margin-top_none">Авторизация</h3>
+            <div class="tui-form__row">
+              <tui-input formControlName="nameValue">
+                Логин
+                <input
+                  placeholder="arisha@gmail.com"
+                  tuiTextfield
+                />
+                <span class="tui-required"></span>
+              </tui-input>
+              <tui-error
+                formControlName="nameValue"
+                [error]="[] | tuiFieldError | async"
+              ></tui-error>
+            </div>
+            <div class="tui-form__row">
+                <tui-input-password formControlName="passwordValue">Пароль</tui-input-password>
+                <tui-error
+                  formControlName="passwordValue"
+                  [error]="[] | tuiFieldError | async"
+                ></tui-error>
+            </div>
+            <div class="tui-form__row">
+              <span class="alreadyacc">Нет аккаунта? <span routerLink="/register">Зарегистрируйтесь!</span></span>
+            </div>
+            <div class="tui-form__row login-flex" style="margin-top: 20px;">
+              <button
+                size="l"
+                tuiButton
+                [disabled]="loginForm.invalid"
+                type="submit"
+                (click)="submitLogin()"
+                class="tui-form__button"
+              >
+                Войти
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <ngb-alert style="margin-top: 10px;" *ngIf="errorMessage" #selfClosingAlert type="danger" (closed)="errorMessage = ''">{{ errorMessage }}</ngb-alert>
+
+    </div>
+
+  </div>
+
+</div>

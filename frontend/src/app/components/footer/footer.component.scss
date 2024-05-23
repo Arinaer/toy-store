@@ -1,0 +1,109 @@
+@import '../../../assets/styles/_variables';
+
+.footer {
+  padding: 30px 0;
+  background-color: $blue-hovered;
+  color: $white;
+
+  .container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &-logo {
+    width: 60px;
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-link {
+      cursor: pointer;
+      transition: .35s all;
+      &:hover {
+        color: #bfbfd3;
+        transform: translateY(-7px);
+      }
+      &::after {
+        content: '|';
+        margin-left: 10px;
+      }
+      &:last-child {
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+
+  &-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    a:visited {
+      color: $white;
+    }
+
+    a {
+      transition: .35s all;
+      color: $white;
+      text-decoration: none;
+      &:hover {
+        color: #bfbfd3;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    max-width: 100%;
+    padding: 30px 10px;
+  }
+
+  .footer {
+    &-left {
+      gap: 20px;
+      width: 45%;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .footer {
+    padding: 20px;
+    .container {
+
+      flex-direction: column;
+      gap: 10px;
+      display: flex;
+    }
+    &-left, &-right {
+      width: 100%;
+    }
+    &-left {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+
+

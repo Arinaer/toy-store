@@ -1,0 +1,96 @@
+
+  <section class="start">
+    <div class="container">
+      <ngb-carousel>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[0]" alt="" />
+          </div>
+          <div class="carousel-caption start-caption">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[1]" alt="" />
+          </div>
+          <div class="carousel-caption start-caption">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[2]" alt="" />
+          </div>
+          <div class="carousel-caption start-caption">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[3]" alt="" />
+          </div>
+          <div class="carousel-caption start-caption">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[4]" alt="" />
+          </div>
+          <div class="carousel-caption start-caption">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </section>
+  <section class="subscription">
+      <div class="container">
+        <img src="assets/goods.png" class="subscription-img">
+        <div class="subcontainer">
+          <span class="subscription-text">Оставьте почту <br>для получения скидок!</span>
+          <form class="subscription-form">
+            <input [formControl]="email" type="email" class="subscription-input" placeholder="email@email.com">
+            <button class="subscription-btn" type="button" (click)="create()">Отправить</button>
+          </form>
+        </div>
+      </div>
+  </section>
+
+  <section class="advantages">
+    <div class="container">
+      <h2 class="title">Преимущества <span>Мишек</span></h2>
+      <div class="advantages-list">
+        <div class="advantages-item">
+          <p class="advantages-name">КАЧЕСТВЕННЫЕ МАТЕРИАЛЫ</p>
+          <p class="advantages-text">Мы не экономим на качестве и не закупаем в Китае</p>
+          <img src="" alt="" class="advantages-image" data-ident="1">
+        </div>
+        <div class="advantages-item">
+          <p class="advantages-name">СОБСТВЕННОЕ ПРОИЗВОДСТВО</p>
+          <p class="advantages-text">Мы отслеживаем качество всех процессов на каждом этапе</p>
+          <img src="" alt="" class="advantages-image" data-ident="2">
+        </div>
+        <div class="advantages-item">
+          <p class="advantages-name">ГИБКОСТЬ ПРОИЗВОДСТВА</p>
+          <p class="advantages-text">Мы готовы изготавливать эксклюзивные игрушки для Вас</p>
+          <img src="" alt="" class="advantages-image" data-ident="3">
+        </div>
+        <div class="advantages-item">
+          <p class="advantages-name">СПРОС ЛЮБОГО ОБЪЕМА</p>
+          <p class="advantages-text">Разные объемы игрушек под разные нужды</p>
+          <img src="" alt="" class="advantages-image" data-ident="4">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="brands">
+    <div class="container">
+      <h2 class="title">Бренды</h2>
+      <div class="brands-list">
+        @for (brand of brands; track brand; let  i = $index) {
+          <div class="brands-item"><img [ngSrc]='"assets/images/brands/brand (" + (i) + ").jpg"' alt="" class="brands-img" width="220" height="200"></div>
+        }
+      </div>
+    </div>
+  </section>
+
+
+

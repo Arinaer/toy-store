@@ -1,0 +1,47 @@
+<nav class="header">
+  <div class="container">
+    <div class="logo-container" routerLink="">
+      <img src="assets/logoq.svg" alt="" class="header-logo">
+      <div class="logo-text">
+        <span class="logo-title">МИШКИ</span>
+        <span class="logo-subtitle">Детские игрушки</span>
+      </div>
+    </div>
+    <tui-svg src="tuiIconAlignJustify" class="burger" (click)="opennav()"></tui-svg>
+    <div class="header-links">
+<!--      <div class="logo-text">-->
+<!--        <span class="logo-title">МИШКИ</span>-->
+<!--        <span class="logo-subtitle">Детские игрушки</span>-->
+<!--      </div>-->
+      <span class="header-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Главная</span>
+      <span class="header-link" routerLink="catalog" routerLinkActive="active">Каталог</span>
+<!--      <div class="d-inline-block header-link" ngbDropdown #myDrop="ngbDropdown" (mouseenter)="myDrop.open()" (mouseleave)="myDrop.close()">-->
+<!--        <button-->
+<!--          type="button"-->
+<!--          class="button"-->
+<!--          id="dropdownManual"-->
+<!--          ngbDropdownAnchor-->
+<!--        >-->
+<!--          Каталог-->
+<!--        </button>-->
+<!--        <div style="transform: translateX(-200px)" ngbDropdownMenu aria-labelledby="dropdownManual" class="drop2" >-->
+<!--          <button ngbDropdownItem *ngFor="let category of categories | async" [routerLink]="['catalog', category._id]">{{ category.name }}</button>-->
+<!--        </div>-->
+<!--      </div>-->
+      <span class="header-link" routerLink="cart" routerLinkActive="active">Корзина</span>
+      <span class="header-link" routerLink="about" routerLinkActive="active">О нас</span>
+<!--      <span class="header-link" routerLink="contacts" routerLinkActive="active">Контакты</span>-->
+      <span class="header-link" routerLink="profile" routerLinkActive="active">Профиль</span>
+      <span class="header-link" routerLink="admin" routerLinkActive="active" *ngIf="isAdmin">Админ</span>
+    </div>
+  </div>
+  <div [ngClass]="{'header-links-mobile': true, 'active': open}">
+    <tui-svg src="tuiIconClose" class="burger-close" (click)="opennav()"></tui-svg>
+    <span class="header-link-mobile" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Главная</span>
+    <span class="header-link-mobile" routerLink="catalog" routerLinkActive="active">Каталог</span>
+    <span class="header-link-mobile" routerLink="cart" routerLinkActive="active">Корзина</span>
+    <span class="header-link-mobile" routerLink="about" routerLinkActive="active">О нас</span>
+    <span class="header-link-mobile" routerLink="profile" routerLinkActive="active">Профиль</span>
+    <span class="header-link-mobile header-link-mobile-admin" routerLink="admin" routerLinkActive="active" *ngIf="isAdmin">Админ</span>
+  </div>
+</nav>
